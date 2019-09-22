@@ -55,6 +55,7 @@ function createTdElement(country,parentClass) {
 	span.setAttribute('data-target','#exampleModal')
 	// for single country list modal popup
 	const link = document.createElement('a');
+	link.style.cursor = "url('http://bringerp.free.fr/Files/RotMG/cursor.gif'), auto";
 	// link.classList.add('toolTip')
 	// link.setAttribute( 'data-toggle','tooltip')
 	// link.setAttribute( 'data-placement','top')
