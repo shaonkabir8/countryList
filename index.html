@@ -7,8 +7,17 @@
         <title>Country List</title>
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/nprogress.css">
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
+    <style>
+    #nprogress .bar { background: black; }
+    #nprogress .peg {box-shadow: 0 0 10px black, 0 0 5px black;}
+    #nprogress .spinner-icon {
+        border-top-color: black;
+        border-left-color: black;
+    }
+    </style>
     <body>
         <div class="wrapper">
             <div class="header">
@@ -55,7 +64,10 @@
         <!-- FontAwesome js -->
         <script src="assets/js/all.min.js"></script>
 
+        <!-- NProgess js -->
+        <script src="assets/js/nprogress.js"></script>
+
         <!-- Main Js-->
-        <script src="assets/js/app.js"></script>
+        <script type="module" src="assets/js/script.js"></script>
     </body>
 </html>
