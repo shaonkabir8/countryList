@@ -349,7 +349,7 @@ a, a:hover { text-decoration: none;}
 }
 
 /* filtering isotope section markup */
-.filter {padding:4px 0; z-index: 99; position: relative;}
+.filter {padding:4px 0;  position: relative;}
 .filter-continent li {
   display: inline-block;
   padding: 10px 18px;
@@ -445,3 +445,12 @@ a, a:hover { text-decoration: none;}
   0%   { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+/* 
+    RESPONSIVE 
+*/
+
+/* Table Responsive */
+.table-responsive {display:table}
+
