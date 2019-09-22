@@ -68,6 +68,7 @@ function createTdElement(country,parentClass) {
 		const learnMoreBtn = document.querySelector('.learnMoreBtn')
 		learnMoreBtn.innerHTML = `learn more <i class="fas fa-long-arrow-alt-right"></i>`
 		learnMoreBtn.setAttribute('href',`https://en.wikipedia.org/wiki/${country.name}`)
+		learnMoreBtn.setAttribute('target', '_blank');
 		// Set data to modal body 
 		const countryName = document.querySelector('.name').innerHTML =`Name: <span>${name}</span>`;
 		const countryCapital = document.querySelector('.capital').innerHTML =`Capital: <span>${capital}</span>`;
