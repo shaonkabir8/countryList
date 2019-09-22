@@ -187,14 +187,26 @@ document.querySelector("#autoComplete").addEventListener("autoComplete", functio
   });
  
 
-// NProgrss | Start only by clicking Menu
-$('.mainmenu ul li a').on('click', (e) => {
-	NProgress.start(); // start    
-	NProgress.set(0.6); // To set a progress percentage, call .set(n), where n is a number between 0..1
-	NProgress.inc(); // To increment the progress bar, just use .inc(). This increments it with a random amount. This will never get to 100%: use it for every image load (or similar).If you want to increment by a specific value, you can pass that as a parameter
-	NProgress.configure({ ease: 'ease', speed: 1000 }); // Adjust animation settings using easing (a CSS easing string) and speed (in ms). (default: ease and 200)
-	NProgress.configure({trickleSpeed: 1000 }); //Adjust how often to trickle/increment, in ms.
-	NProgress.configure({ showSpinner: true });//Turn off loading spinner by setting it to false. (default: true)
-	NProgress.configure({ parent: '.header' });//specify this to change the parent container. (default: body)
-	NProgress.done(); // end
+
+
+const nProgessActivationFunction = () => {
+	NProgress.start();
+	NProgress.set(0.6); 
+	NProgress.inc(); 
+	NProgress.configure({ ease: 'ease', speed: 1000 }); 
+	NProgress.configure({trickleSpeed: 1000 });
+	NProgress.configure({ showSpinner: true });
+	NProgress.done(); 
+}
+
+// NProgrss | Start only by clicking filtering items
+const continent = document.querySelectorAll('.filter-continent li');
+continent.forEach(singleContinent => {
+	singleContinent.addEventListener('click', nProgessActivationFunction)
+})
+
+// NProgess for main menu item
+const mainMenu = document.querySelectorAll('.menu li a');
+mainMenu.forEach(menu => {
+	menu.addEventListener('click', nProgessActivationFunction)
 })
