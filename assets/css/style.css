@@ -68,15 +68,14 @@ a, a:hover { text-decoration: none;}
 }
 .menu li {
   display: inline-block;
-}
-.menu li a {
-  display: block;
-  color: #000;
+  color: #fff;
   font-size: 18px;
   opacity: .8;
   padding: 5px 15px;
+  cursor: pointer;
 }
-.menu li a:hover {
+.pd-50{padding: 150px 0}
+.menu li:hover {
   opacity: 1;
   transition: opacity .3s linear;
 }

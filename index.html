@@ -19,40 +19,25 @@
     }
     </style>
     <body>
-        <div class="wrapper">
-            <div class="header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="logo">
-                                <a href="index.html">Country<span>List</span></a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <ul class="menu">
-                                <li><a href="pages/countries.html">Countries</a></li>
-                                <li><a href="#">Courency</a></li>
-                            </ul>
+        <div class="header fixed">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="logo">
+                            <a href="/">Country<span>List</span></a>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="hero-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7 offset-md-2">
-                            <div class="hero-text">
-                                <h1>All Around The <span>World</span></h1>
-                                <p>A nation with its own government, occupying a particular territory. "the country's increasingly precarious economic position" is called a Country</p>
-                               <a href="pages/countries.html" class="boxed-btn active">View Country List<i class="fas fa-long-arrow-alt-right"></i></a>
-                               <!-- <a href="https://en.wikipedia.org/wiki/Country" target="_blank" class="boxed-btn">Read More <i class="fas fa-long-arrow-alt-right"></i></a> -->
-                            </div>
-                        </div>
+                    <div class="col-md-8 text-right">
+                        <ul class="menu">
+                            <li route="/">Home</li>
+                            <li route="/countries">Countries</li>
+                            <li route="/about">About</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-     
+        <div id="root"></div>
      
 
         <!-- Main jQuery  -->
@@ -68,6 +53,6 @@
         <script src="assets/js/nprogress.js"></script>
 
         <!-- Main Js-->
-        <script type="module" src="assets/js/script.js"></script>
+        <script type="module" src="assets/js/app.js"></script>
     </body>
 </html>
