@@ -1,5 +1,3 @@
-
-const tbody = document.querySelector('.tbody')
 let countries = [];
 
 window.onload = async function() {
@@ -148,8 +146,9 @@ window.onload = async function() {
                         </div>
                     </div>
                 </div>
-            </div>
+			</div>
             `
+			fetchAndUpdate()
 			}
 			if(routeInfo.name === "About") {
 				root.innerHTML = `
@@ -161,95 +160,101 @@ window.onload = async function() {
     // Event Listener
     activeRoutes.forEach(route => {
         route.addEventListener('click', navigate, false)
-    })
-
-
-	// Country List
-    // const res = await fetch('https://countriesnode.herokuapp.com/v1/countries');
-    // const json = await res.json();
-    // countries = json
-	// updateDom(countries)
+    })	
 }
 
-// function updateDom(countries) {
-// 	tbody.innerHTML = ""
-// 	if(countries) {
-// 	  countries.forEach(country => {
-// 		  createTdElement(country, tbody)
-// 	  })
-// 	}
-//   }
 
-// function filterByContinent(continent) {
-// 	const filterContinent = countries.filter(item => {
-// 		return item.continent === continent
-// 	})
-// 	updateDom(filterContinent)
-// }
+	// Country List 
+async function fetchAndUpdate () {
+	const res = await fetch('https://countriesnode.herokuapp.com/v1/countries');
+	const json = await res.json();
+	countries = json;
+	console.log(countries)
+	updateDom(countries);
+}
+
+function updateDom(countries) {
+	const tbody = document.querySelector('.tbody')
+	tbody.innerHTML = ""
+	if(countries) {
+		countries.forEach(country => {
+			createTdElement(country, tbody)
+		})
+	}
+}
+
+
+function filterByContinent(continent) {
+	const filterContinent = countries.filter(item => {
+		return item.continent === continent
+	})
+	updateDom(filterContinent)
+}
 
 
 
-// // creating a function to display data as table
-// function createTdElement(country,parentClass) {
+// creating a function to display data as table
+function createTdElement(country,parentClass) {
 
-// 	const tr = document.createElement('tr');
+	const tr = document.createElement('tr');
 
-// 	const tdName = document.createElement('td')
-// 	tdName.innerHTML = country.name
-// 	// for bootstrap tooltip
-// 	const span = document.createElement('span')
-// 	span.setAttribute('data-toggle','modal')
-// 	span.setAttribute('data-target','#exampleModal')
-// 	// for single country list modal popup
-// 	const link = document.createElement('a');
-// 	link.style.cursor = "url('http://bringerp.free.fr/Files/RotMG/cursor.gif'), auto";
-// 	// link.classList.add('toolTip')
-// 	// link.setAttribute( 'data-toggle','tooltip')
-// 	// link.setAttribute( 'data-placement','top')
-// 	link.setAttribute( 'title','Click here to see details')
+	const tdName = document.createElement('td')
+	tdName.innerHTML = country.name
+	// for bootstrap tooltip
+	const span = document.createElement('span')
+	span.setAttribute('data-toggle','modal')
+	span.setAttribute('data-target','#exampleModal')
+	// for single country list modal popup
+	const link = document.createElement('a');
+	link.style.cursor = "url('http://bringerp.free.fr/Files/RotMG/cursor.gif'), auto";
+	// link.classList.add('toolTip')
+	// link.setAttribute( 'data-toggle','tooltip')
+	// link.setAttribute( 'data-placement','top')
+	link.setAttribute( 'title','Click here to see details')
 
-// 	link.addEventListener('click', e => {
-// 		// grab the information from API and destructuring them.
-// 		const {name,capital,languages,phone,continent,native} = country;
-// 		// Button inside Modal Body to know more about single country
-// 		const learnMoreBtn = document.querySelector('.learnMoreBtn')
-// 		learnMoreBtn.innerHTML = `learn more <i class="fas fa-long-arrow-alt-right"></i>`
-// 		learnMoreBtn.setAttribute('href',`https://en.wikipedia.org/wiki/${country.name}`)
-// 		learnMoreBtn.setAttribute('target', '_blank');
-// 		// Set data to modal body 
-// 		const countryName = document.querySelector('.name').innerHTML =`Name: <span>${name}</span>`;
-// 		const countryCapital = document.querySelector('.capital').innerHTML =`Capital: <span>${capital}</span>`;
-// 		const countryPhone = document.querySelector('.phone').innerHTML =`Phone Code: <span>${phone}</span>`;
-// 		const countryContinent = document.querySelector('.continent').innerHTML =`Continet: <span>${continent}</span>`;
-// 		const countryLanguages = document.querySelector('.languages').innerHTML =`Languages: <span>${languages}</span>`;
-// 		const countryNative = document.querySelector('.native').innerHTML =`Native: <span>${native}</span>`;
-// 	})
-// 	span.appendChild(link)
-// 	link.appendChild(tdName)
-// 	tr.appendChild(span)
+	link.addEventListener('click', () => {
+		// grab the information from API and destructuring them.
+		const {name,capital,languages,phone,continent,native} = country;
+		// Button inside Modal Body to know more about single country
+		const learnMoreBtn = document.querySelector('.learnMoreBtn')
+		learnMoreBtn.innerHTML = `learn more <i class="fas fa-long-arrow-alt-right"></i>`
+		learnMoreBtn.setAttribute('href',`https://en.wikipedia.org/wiki/${country.name}`)
+		learnMoreBtn.setAttribute('target', '_blank');
+		// Set data to modal body 
+		const countryName = document.querySelector('.name').innerHTML =`Name: <span>${name}</span>`;
+		const countryCapital = document.querySelector('.capital').innerHTML =`Capital: <span>${capital}</span>`;
+		const countryPhone = document.querySelector('.phone').innerHTML =`Phone Code: <span>${phone}</span>`;
+		const countryContinent = document.querySelector('.continent').innerHTML =`Continet: <span>${continent}</span>`;
+		const countryLanguages = document.querySelector('.languages').innerHTML =`Languages: <span>${languages}</span>`;
+		const countryNative = document.querySelector('.native').innerHTML =`Native: <span>${native}</span>`;
+	})
+	span.appendChild(link)
+	link.appendChild(tdName)
+	tr.appendChild(span)
 
-// 	const tdCapital = document.createElement('td')
-// 	tdCapital.innerHTML = country.capital ? country.capital: 'N/A'
-// 	tr.appendChild(tdCapital)
+	const tdCapital = document.createElement('td')
+	tdCapital.innerHTML = country.capital ? country.capital: 'N/A'
+	tr.appendChild(tdCapital)
 
-// 	const tdPhone = document.createElement('td')
-// 	tdPhone.innerHTML = country.phone;
-// 	tr.appendChild(tdPhone)
+	const tdPhone = document.createElement('td')
+	tdPhone.innerHTML = country.phone;
+	tr.appendChild(tdPhone)
 
-// 	const tdNative = document.createElement('td')
-// 	tdNative.innerHTML = country.native;
-// 	tr.appendChild(tdNative)
+	const tdNative = document.createElement('td')
+	tdNative.innerHTML = country.native;
+	tr.appendChild(tdNative)
 
-// 	const tdContinent = document.createElement('td')
-// 	tdContinent.innerHTML = country.continent;
-// 	tr.appendChild(tdContinent)
+	const tdContinent = document.createElement('td')
+	tdContinent.innerHTML = country.continent;
+	tr.appendChild(tdContinent)
 
-// 	const tdLanguages = document.createElement('td')
-// 	tdLanguages.innerHTML = country.languages;
-// 	tr.appendChild(tdLanguages)
+	const tdLanguages = document.createElement('td')
+	tdLanguages.innerHTML = country.languages;
+	tr.appendChild(tdLanguages)
 
-// 	parentClass.appendChild(tr) 
-// }
+	parentClass.appendChild(tr)
+	 
+}
 
 
 
