@@ -31,6 +31,8 @@ window.onload = async function() {
     if(currentPath === '/') {
         // Header Style change
         header.classList.remove('fixed')
+        document.querySelector('.search-box').style.display = 'none'
+
 		root.innerHTML = `
 		<div class="hero-area">
 			<div class="container">
@@ -76,6 +78,7 @@ window.onload = async function() {
         } else {
             window.history.pushState({}, 'name', routeInfo.path);
             header.classList.remove('fixed')
+            document.querySelector('.search-box').style.display = 'none'
             root.innerHTML = `
 			<div class="hero-area">
                 <div class="container">
@@ -407,12 +410,3 @@ document.querySelector("#autoComplete").addEventListener("autoComplete", functio
   window.addEventListener("load", function () {
 	document.querySelector("#autoComplete").classList.add("out");
   });
- 
-
-// controlling autoComplete visibility
-// const searchBox = document.querySelector('.search-box')
-// if(header.classList === 'fixed') {
-//     searchBox.setAttribute('style','display:inline-block')
-// } else {
-//     searchBox.setAttribute('style','display:none')
-// }
