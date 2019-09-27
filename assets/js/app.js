@@ -174,6 +174,7 @@ window.onload = async function() {
 			fetchAndUpdate()
             scrollFunction()
             filterNProgress()
+            changeActiveClass()
 			}
 			if(routeInfo.name === "About") {
 				root.innerHTML = `
@@ -310,6 +311,17 @@ mainMenu.forEach(menu => {
 	menu.addEventListener('click', nProgessActivationFunction)
 })
 
+// Active Class Changing for Filtering Button
+function changeActiveClass(){
+    var btns = document.querySelectorAll('.filter-continent li');
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function() {
+            var current = document.querySelectorAll('.filter-continent li.active');
+            this.className += "active";
+            current[0].className = current[0].className.replace("active", "");
+        });
+    }
+}
 
 
 // Scroll Top Icon
