@@ -158,7 +158,8 @@ a, a:hover { text-decoration: none;}
   width: 100%;
 }
 .boxed-btn:hover{
-  color: #fff;
+  color: #fff !important;
+  cursor: pointer;
   border-color:#000;
 }
 .boxed-btn svg {

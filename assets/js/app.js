@@ -39,7 +39,13 @@ window.onload = async function() {
 						<div class="hero-text">
 							<h1>All Around The <span>World</span></h1>
 							<p>A nation with its own government, occupying a particular territory. "the country's increasingly precarious economic position" is called a Country</p>
-						<a href="pages/countries.html" class="boxed-btn active">View Country List<i class="fas fa-long-arrow-alt-right"></i></a>
+                        <a
+                            route="/countries"
+                            class="boxed-btn active"
+                        >
+                            View Country List
+                            <i class="fas fa-long-arrow-alt-right"></i>
+                        </a>
 						</div>
 					</div>
 				</div>
@@ -72,18 +78,24 @@ window.onload = async function() {
             header.classList.remove('fixed')
             root.innerHTML = `
 			<div class="hero-area">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-7 offset-md-2">
-							<div class="hero-text">
-								<h1>All Around The <span>World</span></h1>
-								<p>A nation with its own government, occupying a particular territory. "the country's increasingly precarious economic position" is called a Country</p>
-							<a href="pages/countries.html" class="boxed-btn active">View Country List<i class="fas fa-long-arrow-alt-right"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 offset-md-2">
+                            <div class="hero-text">
+                                <h1>All Around The <span>World</span></h1>
+                                <p>A nation with its own government, occupying a particular territory. "the country's increasingly precarious economic position" is called a Country</p>
+                            <a
+                                route="/countries"
+                                class="boxed-btn active"
+                            >
+                                View Country List
+                                <i class="fas fa-long-arrow-alt-right"></i>
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             `
             if(routeInfo.name === 'Countries') {
                 header.classList.add('fixed')
