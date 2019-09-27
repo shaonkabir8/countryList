@@ -162,10 +162,12 @@ window.onload = async function() {
                             </div>
                         </div>
                     </div>
+                    <a href="" class="scrollTop"></a>
                 </div>
 			</div>
             `
 			fetchAndUpdate()
+            scrollFunction()
 			}
 			if(routeInfo.name === "About") {
 				root.innerHTML = `
@@ -297,3 +299,24 @@ const mainMenu = document.querySelectorAll('.menu li');
 mainMenu.forEach(menu => {
 	menu.addEventListener('click', nProgessActivationFunction)
 })
+
+
+
+// Scroll Top Icon
+const scrollFunction = () => {
+    // Smooth scrolling effect 
+    const scrollTop = document.querySelector('.scrollTop');
+    scrollTop.addEventListener('click', e => {
+        e.preventDefault();
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+    // Scroll ToTop will be vissable after 100px of scrolling [Scroll Function]
+    window.onscroll = function() {
+        if(document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            scrollTop.setAttribute('style','display:block;')
+        } else {
+            scrollTop.setAttribute('style','display:none')
+        }
+    }
+}
+
