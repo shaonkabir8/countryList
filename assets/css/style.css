@@ -232,6 +232,7 @@ a, a:hover { text-decoration: none;}
 }
 
 /* AutoComplete */
+.search-box {display: none;}
 #autoComplete_results_list {
 	position: fixed;
 	height: 75vh;

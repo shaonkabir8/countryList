@@ -8,10 +8,11 @@
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/all.min.css">
         <link rel="stylesheet" href="assets/css/nprogress.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.0.1/dist/css/autoComplete.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
-        <div class="header fixed">
+        <div class="header ">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
@@ -19,7 +20,12 @@
                             <a href="/">Country<span>List</span></a>
                         </div>
                     </div>
-                    <div class="col-md-8 text-right">
+                    <div class="col-md-4 text-right">
+                        <div class="search-box">
+                            <input id="autoComplete" tabindex="1">
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-right">
                         <ul class="menu">
                             <li route="/">Home</li>
                             <li route="/countries">Countries</li>
@@ -36,6 +42,7 @@
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/all.min.js"></script>
         <script src="assets/js/nprogress.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.0.1/dist/js/autoComplete.min.js"></script>
         <script src="assets/js/app.js"></script>
     </body>
 </html>

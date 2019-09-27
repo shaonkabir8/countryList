@@ -1,8 +1,8 @@
 let countries = [];
+const header = document.querySelector('.header');
 
 window.onload = async function() {
     const root = document.querySelector('#root');
-    const header = document.querySelector('.header');    
     // Create a Router Constructor
     function Router(name, routes) {
         return{
@@ -99,6 +99,8 @@ window.onload = async function() {
             `
             if(routeInfo.name === 'Countries') {
                 header.classList.add('fixed')
+                document.querySelector('.search-box').style.display = 'inline-block'
+
                 root.innerHTML = `
 				<div class="country-list">
                 <div class="container">
@@ -320,3 +322,97 @@ const scrollFunction = () => {
     }
 }
 
+
+
+// AUTO COMPLETE BOX
+
+// autoComplete.js on type event emitter
+document.querySelector("#autoComplete").addEventListener("autoComplete", function (event) {
+	console.log(event.detail);
+	console.log(autoCompletejs);
+  });
+  
+  // The autoComplete.js Engine instance creator
+  const autoCompletejs = new autoComplete({
+	data: {
+	  src: async function () {
+		// Loading placeholder text
+		document.querySelector("#autoComplete").setAttribute("placeholder", "Loading...");
+		// Fetch External Data Source
+		const source = await fetch("http://countriesnode.herokuapp.com/v1/countries/");
+		const data = await source.json();
+		// Returns Fetched data
+		// console.log(data);
+		return data;
+	  },
+	  key: ["name","capital","native"],
+	},
+	sort: function (a, b) {
+	  if (a.match < b.match) {
+		return -1;
+	  }
+	  if (a.match > b.match) {
+		return 1;
+	  }
+	  return 0;
+	},
+	query: {
+	  manipulate: function (query) {
+		return query.replace("@pizza", "burger");
+	  },
+	},
+	placeHolder: "Search Country name",
+	selector: "#autoComplete",
+	threshold: 0,
+	debounce: 0,
+	searchEngine: "strict",
+	highlight: true,
+	maxResults: 10,
+	resultsList: {
+	  render: true,
+	  container: function (source) {
+		source.setAttribute("id", "autoComplete_results_list");
+	  },
+	  element: "ul",
+	  destination: document.querySelector("#autoComplete"),
+	  position: "afterend",
+	},
+	resultItem: {
+	  content: function (data, source) {
+		source.innerHTML = data.match;
+	  },
+	  element: "li",
+	},
+	noResults: function () {
+	  const result = document.createElement("li");
+	  result.setAttribute("class", "no_result");
+	  result.setAttribute("tabindex", "1");
+	  result.innerHTML = "No Results";
+	  document.querySelector("#autoComplete_results_list").appendChild(result);
+	},
+	onSelection: function (feedback) {
+	  const selection = feedback.selection.value.food;
+	  // Render selected choice to selection div
+	  document.querySelector(".selection").innerHTML = selection;
+	  // Clear Input
+	  document.querySelector("#autoComplete").value = "";
+	  // Change placeholder with the selected value
+	  document.querySelector("#autoComplete").setAttribute("placeholder", selection);
+	  // Concole log autoComplete data feedback
+	  console.log(feedback);
+	},
+  });
+  
+//   // On page load add class to input field
+  window.addEventListener("load", function () {
+	document.querySelector("#autoComplete").classList.add("out");
+  });
+ 
+
+// controlling autoComplete visibility
+// const searchBox = document.querySelector('.search-box')
+// if(header.classList === 'fixed') {
+//     searchBox.setAttribute('style','display:inline-block')
+// } else {
+//     searchBox.setAttribute('style','display:none')
+// }
