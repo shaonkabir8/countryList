@@ -271,11 +271,12 @@ const nProgessActivationFunction = () => {
 // NProgrss | Start only by clicking filtering items
 const continent = document.querySelectorAll('.filter-continent li');
 continent.forEach(singleContinent => {
+    console.log(singleContinent)
 	singleContinent.addEventListener('click', nProgessActivationFunction)
 })
 
 // NProgess for main menu item
-const mainMenu = document.querySelectorAll('.menu li a');
+const mainMenu = document.querySelectorAll('.menu li');
 mainMenu.forEach(menu => {
 	menu.addEventListener('click', nProgessActivationFunction)
 })
