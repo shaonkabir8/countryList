@@ -1,7 +1,8 @@
 let countries = [];
 
 window.onload = async function() {
-	const root = document.querySelector('#root');
+    const root = document.querySelector('#root');
+    const header = document.querySelector('.header');    
     // Create a Router Constructor
     function Router(name, routes) {
         return{
@@ -28,6 +29,8 @@ window.onload = async function() {
     // grab the current path
     const currentPath = window.location.pathname;
     if(currentPath === '/') {
+        // Header Style change
+        header.classList.remove('fixed')
 		root.innerHTML = `
 		<div class="hero-area">
 			<div class="container">
@@ -66,6 +69,7 @@ window.onload = async function() {
             root.innerHTML = "No Path Exists !!"
         } else {
             window.history.pushState({}, 'name', routeInfo.path);
+            header.classList.remove('fixed')
             root.innerHTML = `
 			<div class="hero-area">
 				<div class="container">
@@ -82,6 +86,7 @@ window.onload = async function() {
 			</div>
             `
             if(routeInfo.name === 'Countries') {
+                header.classList.add('fixed')
                 root.innerHTML = `
 				<div class="country-list">
                 <div class="container">
