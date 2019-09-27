@@ -209,10 +209,14 @@ function updateDom(countries) {
 
 
 function filterByContinent(continent) {
-	const filterContinent = countries.filter(item => {
-		return item.continent === continent
-	})
-	updateDom(filterContinent)
+    if(continent) {
+        const filterContinent = countries.filter(item => {
+            return item.continent === continent
+        })
+        updateDom(filterContinent)
+    } else {
+        updateDom(countries)
+    }
 }
 
 
