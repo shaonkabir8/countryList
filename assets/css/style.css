@@ -447,7 +447,11 @@ a, a:hover { text-decoration: none;}
   100% { transform: rotate(360deg); }
 }
 
-
+/* Table Style Fixed */
+.table td, .table th {
+	border-top:none;
+}
+tr {border-bottom: 1px solid #ddd}
 /* 
     RESPONSIVE 
 */

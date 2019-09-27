@@ -124,7 +124,7 @@ window.onload = async function() {
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table class="table table-striped table-hover">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Name</th>
