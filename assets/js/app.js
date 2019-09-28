@@ -34,7 +34,33 @@ window.onload = async function() {
         document.querySelector('.search-box').style.display = 'none'
 
 		root.innerHTML = `
-		<div class="hero-area">
+            <div class="hero-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 offset-md-2">
+                            <div class="hero-text">
+                                <h1>All Around The <span>World</span></h1>
+                                <p>A nation with its own government, occupying a particular territory. "the country's increasingly precarious economic position" is called a Country</p>
+                            <a
+                                route="/countries"
+                                class="boxed-btn active"
+                            >
+                                View Country List
+                                <i class="fas fa-long-arrow-alt-right"></i>
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		`
+    } else {
+        const route = Routes.routes.filter(singleRoute => singleRoute.path === currentPath)[0];
+        if(route) {
+            root.innerHTML = `You are on ${route.name} path`;
+        } else {
+            root.innerHTML = `
+            <div class="hero-area">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-7 offset-md-2">
@@ -52,14 +78,8 @@ window.onload = async function() {
 					</div>
 				</div>
 			</div>
-		</div>
-		`
-    } else {
-        const route = Routes.routes.filter(singleRoute => singleRoute.path === currentPath)[0];
-        if(route) {
-            root.innerHTML = `You are on ${route.name} path`;
-        } else {
-            root.innerHTML = `No pattern matches`;
+		</div>                                              
+            `;
         }
     }
 
