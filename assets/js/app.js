@@ -198,7 +198,28 @@ window.onload = async function() {
 			}
 			if(routeInfo.name === "About") {
 				root.innerHTML = `
-					<h3 class="pd-50 bg-success text-center">About Page</h3>
+                <div class="about-page">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+                                <div class="about-content">
+                                    <h5>Stack and Tools Used :)</h5>
+                                    <div class="stack">
+                                        <ul>
+                                            <li><a href=""><i class="fab fa-html5"></i> <span>HTML</span></a></li>
+                                            <li><a href=""><i class="fab fa-css3"></i> <span>CSS</span></a></li>
+                                            <li><a href=""><i class="fab fa-js"></i> <span>JavaScript</span></a></li>
+                                            <li><a href=""><i class="fab fa-bootstrap"></i> <span>Bootstrap</span></a></li>
+                                            <li><a href=""><i class="fab fa-font-awesome"></i> <span>Font Awesome</span></a></li>
+                                            <li><a href=""><i class="fas fa-font"></i> <span>Google Font</span></a></li>
+                                        </ul>
+                                        <p>View Source Code on <a href="https://github.com.com/Shaonkabir/countries" target="_blank">Github <i class="fab fa-github"></i></a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 				`
 			}
         }

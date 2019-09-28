@@ -446,6 +446,87 @@ a, a:hover { text-decoration: none;}
   0%   { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+/* About Page Style */
+
+.about-page {
+  background-color: var(--secondary);
+  background-image: url(../img/about.gif);
+  background-size: cover;
+  background-position: center;
+  padding-top: 200px;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+.about-page::after {
+  position: absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  content:'';
+  background: var(--secondary);
+  opacity: .7;
+  z-index: -1;
+}
+
+.about-content h5 {
+  color: #fff;
+  font-style: italic;
+  font-weight: normal;
+  margin-top: 40px;
+}
+.stack li {
+  display: inline-block;
+  text-align: center;
+  padding-right: 30px;
+}
+.stack li a {
+  display: block;
+  color: #000;
+  transition: all .3s linear;
+}
+.stack li span {
+  display: block;
+  font-style: italic;
+  font-weight: bold;
+  padding-top: 8px;
+}
+.stack li svg {
+  font-size: 30px;
+  color: rgb(255, 8, 8);
+  transition: all .3s linear;
+}
+.stack li a:hover {
+  color: white;
+}
+.stack li a:hover svg {
+  opacity: 0.7;
+}
+.stack {
+  padding: 30px 0;
+}
+.about-content h3 span {
+  color: #fff;
+}
+
+.stack p {
+  margin-top: 31px;
+  font-weight: bold;
+}
+.stack p a {
+  color: #fff;
+  margin-left: 5px;
+  transition: all .3s linear;
+  
+}
+.stack p a:hover > svg {
+  margin-left: 10px;
+  display: inline-block;
+  color:red;
+  transition: all .3s linear;
+  
+}
 
 /* Table Style Fixed */
 .table td, .table th {
