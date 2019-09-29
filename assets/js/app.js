@@ -475,3 +475,20 @@ document.querySelector("#autoComplete").addEventListener("autoComplete", functio
   window.addEventListener("load", function () {
 	document.querySelector("#autoComplete").classList.add("out");
   });
+
+
+
+  // Media Query for Humburger Menu
+window.onresize = function() {
+    const smallMenu = document.querySelector('.smallScreenMenu');
+    const mainMenu = document.querySelector('.menu')
+    let width =  window.innerWidth;
+    // @media (min-width: 768px) { ... }
+    if(width <= 768) {
+        smallMenu.style.display = 'block';
+        mainMenu.style.display = 'none';
+    } else {
+        smallMenu.style.display = 'none';
+        mainMenu.style.display = 'block';
+    }
+};

@@ -98,6 +98,101 @@ a, a:hover { text-decoration: none;}
 .menu {
   text-align: right;
 }
+
+
+/* If the targeted device is mobile phone or tablet*/
+.navbar-toggler.smallScreenMenu {
+	position: absolute;
+	right: 0;
+	top: -35px;
+}
+.animated-icon1{
+  width: 30px;
+  height: 20px;
+  position: relative;
+  margin: 0px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+  }
+  
+  .animated-icon1 span{
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .25s ease-in-out;
+  -moz-transition: .25s ease-in-out;
+  -o-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+  }
+  
+  .animated-icon1 span {
+  background: #e65100;
+  }
+  
+  .animated-icon1 span:nth-child(1) {
+  top: 0px;
+  }
+  
+  .animated-icon1 span:nth-child(2) {
+  top: 10px;
+  }
+  
+  .animated-icon1 span:nth-child(3) {
+  top: 20px;
+  }
+  
+  .animated-icon1.open span:nth-child(1) {
+  top: 11px;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+  }
+  
+  .animated-icon1.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+  }
+  
+  .animated-icon1.open span:nth-child(3) {
+  top: 11px;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+  }
+  .header-area {
+    padding: 5px 0;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+  }
+  .navbar-brand img {
+    width: 130px;
+  }
+  #navbarSupportedContent20 {background: #000}
+  #navbarSupportedContent20 a {
+    color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+  }
+  .navbar {padding: 0px 1rem;}
+
 .hero-area {
   background-image: url(../img/hero-section.jpg);
   background-size:cover;
@@ -494,7 +589,7 @@ a, a:hover { text-decoration: none;}
 }
 .stack li svg {
   font-size: 30px;
-  color: rgb(255, 8, 8);
+  color:#424343;
   transition: all .3s linear;
 }
 .stack li a:hover {
@@ -511,8 +606,12 @@ a, a:hover { text-decoration: none;}
 }
 
 .stack p {
-  margin-top: 31px;
-  font-weight: bold;
+	margin-top: 31px;
+	font-weight: bold;
+	display: inline-block;
+	box-shadow: 0 0 10px #6a6969;
+	padding: 10px;
+	border-radius: 50px;
 }
 .stack p a {
   color: #fff;
