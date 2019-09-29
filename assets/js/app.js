@@ -149,6 +149,7 @@ window.onload = async function() {
                                         <tr>
                                             <th>Name</th>
                                             <th>Capital</th>
+                                            <th>Currency</th>
                                             <th>Phone</th>
                                             <th>Native</th>
                                             <th>Continent</th>
@@ -170,6 +171,7 @@ window.onload = async function() {
                                                     <div class="modal-body">
                                                         <p class="name"></p>
                                                         <p class="capital"></p>
+                                                        <p class="currency"></p>
                                                         <p class="phone"></p>
                                                         <p class="native"></p>
                                                         <p class="continent"></p>
@@ -285,7 +287,7 @@ function createTdElement(country,parentClass) {
 
 	link.addEventListener('click', () => {
 		// grab the information from API and destructuring them.
-		const {name,capital,languages,phone,continent,native} = country;
+		const {name,capital,currency,languages,phone,continent,native} = country;
 		// Button inside Modal Body to know more about single country
 		const learnMoreBtn = document.querySelector('.learnMoreBtn')
 		learnMoreBtn.innerHTML = `learn more <i class="fas fa-long-arrow-alt-right"></i>`
@@ -294,6 +296,7 @@ function createTdElement(country,parentClass) {
 		// Set data to modal body 
 		const countryName = document.querySelector('.name').innerHTML =`Name: <span>${name}</span>`;
 		const countryCapital = document.querySelector('.capital').innerHTML =`Capital: <span>${capital}</span>`;
+		const countryCurrency = document.querySelector('.currency').innerHTML =`Capital: <span>${currency}</span>`;
 		const countryPhone = document.querySelector('.phone').innerHTML =`Phone Code: <span>${phone}</span>`;
 		const countryContinent = document.querySelector('.continent').innerHTML =`Continet: <span>${continent}</span>`;
 		const countryLanguages = document.querySelector('.languages').innerHTML =`Languages: <span>${languages}</span>`;
@@ -306,6 +309,10 @@ function createTdElement(country,parentClass) {
 	const tdCapital = document.createElement('td')
 	tdCapital.innerHTML = country.capital ? country.capital: 'N/A'
 	tr.appendChild(tdCapital)
+
+	const tdCurrency = document.createElement('td')
+	tdCurrency.innerHTML = country.currency;
+	tr.appendChild(tdCurrency)
 
 	const tdPhone = document.createElement('td')
 	tdPhone.innerHTML = country.phone;
