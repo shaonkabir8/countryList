@@ -487,6 +487,7 @@ window.onresize = function() {
     if(width <= 768) {
         smallMenu.style.display = 'block';
         mainMenu.style.display = 'none';
+        document.querySelector("#autoComplete").style.display = 'none'
     } else {
         smallMenu.style.display = 'none';
         mainMenu.style.display = 'block';
@@ -497,8 +498,10 @@ window.onresize = function() {
         const root = document.querySelector('#root');
        if(header.classList.contains('fixed')) {
            root.style.paddingTop = '50px'
+           document.querySelector('.navbar-toggler.smallScreenMenu').style.top = '-55px'
        } else {
-        root.style.paddingTop = '0px'           
+        root.style.paddingTop = '0px';
+        document.querySelector('.navbar-toggler.smallScreenMenu').style.top = '-35px'
        }
     }
     // @media (max-width:990)
