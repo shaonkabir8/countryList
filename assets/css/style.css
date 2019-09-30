@@ -101,10 +101,19 @@ a, a:hover { text-decoration: none;}
 
 
 /* If the targeted device is mobile phone or tablet*/
+.navbar-nav .nav-link {
+	padding-right: 0;
+	padding-left: 0;
+	color: #fff;
+	cursor: pointer;
+	text-align: center;
+	border-bottom: 1px solid;
+}
 .navbar-toggler.smallScreenMenu {
 	position: absolute;
 	right: 0;
-	top: -35px;
+  top: -35px;
+  display:none;
 }
 .animated-icon1{
   width: 30px;
@@ -639,3 +648,19 @@ tr {border-bottom: 1px solid #ddd}
 /* Table Responsive */
 .table-responsive {display:table}
 
+
+@media screen and (min-width: 576px) {
+  .navbar-toggler.smallScreenMenu {right: -55%;}
+}
+@media screen and (max-width: 772px) {
+  .menu {display:none;}
+  .navbar-toggler.smallScreenMenu {display: block;}
+  .filter-continent li{display:none;}
+}
+@media screen and (min-width:550px) and (max-width:990px) {
+  .menu li {
+    font-size: 17px;
+    padding: 5px;
+  }
+  .filter-continent li{padding:10px;}
+}

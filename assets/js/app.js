@@ -483,12 +483,34 @@ window.onresize = function() {
     const smallMenu = document.querySelector('.smallScreenMenu');
     const mainMenu = document.querySelector('.menu')
     let width =  window.innerWidth;
-    // @media (min-width: 768px) { ... }
+    // // @media (min-width: 768px) { ... }
     if(width <= 768) {
         smallMenu.style.display = 'block';
         mainMenu.style.display = 'none';
     } else {
         smallMenu.style.display = 'none';
         mainMenu.style.display = 'block';
+    }
+
+    // @media (min-width:550px) and (max-width:990px)
+    if(width >=550 && width <= 990) {
+        const root = document.querySelector('#root');
+       if(header.classList.contains('fixed')) {
+           root.style.paddingTop = '50px'
+       } else {
+        root.style.paddingTop = '0px'           
+       }
+    }
+    // @media (max-width:990)
+    if(width > 990) {
+        if(header.classList.contains('fixed')) {
+            root.style.paddingTop = '30px'; 
+        }     
+    }
+    // @media (max-width:1200)
+    if(width > 1200) {
+        if(header.classList.contains('fixed')) {
+            root.style.paddingTop = '15px'; 
+        }     
     }
 };
