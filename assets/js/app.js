@@ -144,7 +144,7 @@ window.onload = async function() {
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover table-responsive-sm">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Name</th>
@@ -503,6 +503,12 @@ window.onresize = function() {
         root.style.paddingTop = '0px';
         document.querySelector('.navbar-toggler.smallScreenMenu').style.top = '-35px'
        }
+    }
+    // @media (max-width:500)
+    if(width > 500) {
+        if(header.classList.contains('fixed')) {
+            root.style.paddingTop = '60px'; 
+        }     
     }
     // @media (max-width:990)
     if(width > 990) {
