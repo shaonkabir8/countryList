@@ -223,6 +223,7 @@ a, a:hover { text-decoration: none;}
   opacity: .9;
 }
 .hero-text h1 {
+  font-size:35px;
   color: #000;
 }
 .hero-text {
@@ -663,4 +664,11 @@ tr {border-bottom: 1px solid #ddd}
     padding: 5px;
   }
   .filter-continent li{padding:10px;}
+}
+@media screen and (min-width:590px){
+  .hero-text {padding:95px 0}
+}
+
+@media screen and (max-width:700px){
+  .hero-text h1{font-size:30px;}
 }
