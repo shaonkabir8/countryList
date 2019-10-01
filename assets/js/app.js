@@ -256,8 +256,13 @@ function createTdElement(country,parentClass) {
     
 	tdName.addEventListener('click', () => {
         // Change URL accroding to click with actual data
-        window.history.pushState({}, '', `/countries/:${code}`)
+        window.history.pushState({}, '', `/countries/${code}`)
         
+        // Remove 'fixed' Class from Header
+        document.querySelector('.header').classList.remove('fixed');
+        // Hide autoComplete
+        document.querySelector('#autoComplete').style.display = 'none'
+        // Change Root Element Content
         document.querySelector('#root').innerHTML = `
             <div class="single-country-list">
                 <div class="container">
@@ -267,15 +272,16 @@ function createTdElement(country,parentClass) {
                                 <h3>${name}</h3>
                             </div>
                             <div class="country-content">
-                                <h5>Country Name: ${name}</h5>
-                                <h5>Capital: ${capital}</h5>
-                                <h5>Currency: ${currency}</h5>
-                                <h5>Phone Code: ${phone}</h5>
-                                <h5>Country Code: ${code}</h5>
-                                <h5>Languages: ${languages}</h5>
-                                <h5>Native: ${native}</h5>
-                                <h5>Continent: ${continent}</h5>
-                                <a href="https://www.britannica.com/place/${name}" class="boxed-btn">Learn More<i class="fas fa-long-arrow-alt-right"></i></a>
+                                <h5>Country Name: <span>${name}</span></h5>
+                                <h5>Capital: <span>${capital ? capital: 'N/A'}</span></h5>
+                                <h5>Currency: <span>${currency}</span></h5>
+                                <h5>Phone Code: <span>${phone}</span></h5>
+                                <h5>Country Code: <span>${code}</span></h5>
+                                <h5>Native: <span>${native}</span></h5>
+                                <h5>Languages: <span>${languages}</span></h5>
+                                <h5>Continent: <span>${continent}</span></h5>
+                                <a href="https://en.wikipedia.org/wiki/${name}" target="_blank" class="boxed-btn">Learn More<i class="fas fa-long-arrow-alt-right"></i></a>
+                                <a href="/" class="boxed-btn">Back to Home Page <i class="fas fa-long-arrow-alt-right"></i></a>
                             </div>
                         </div>
                     </div>

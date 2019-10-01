@@ -636,6 +636,42 @@ a, a:hover { text-decoration: none;}
   transition: all .3s linear;
   
 }
+/* Single Country List Page */
+.single-country-list {
+  background-image: url(../img/singlePageImage.jpg);
+  background-size: cover;
+  background-position: center;
+  background-color: #000;
+  position: relative;
+  z-index: 1;
+  padding-top: 130px;
+  height:100vh;
+}
+.single-country-list::after {
+  position: absolute;
+  content: '';
+  background: var(--secondary);
+  left: 0;
+  top:0;
+  width:100%;
+  height: 100%;
+  z-index: -1;
+  opacity: .8;
+}
+.country-header h3 {
+	font-style: italic;
+	border-bottom: 1px solid #db5252;
+	border-top: 1px solid #db5252;
+	padding: 9px 0;
+  margin-bottom: 30px;
+  color:#fff;
+}
+.country-content h5 span {
+  font-style: italic;
+  font-weight: normal;
+  color: #fff;
+  padding-left: 10px;
+}
 
 /* Table Style Fixed */
 .table td, .table th {
