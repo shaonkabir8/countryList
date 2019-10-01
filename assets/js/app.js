@@ -281,7 +281,7 @@ function createTdElement(country,parentClass) {
                                 <h5>Languages: <span>${languages}</span></h5>
                                 <h5>Continent: <span>${continent}</span></h5>
                                 <a href="https://en.wikipedia.org/wiki/${name}" target="_blank" class="boxed-btn">Learn More<i class="fas fa-long-arrow-alt-right"></i></a>
-                                <a href="/" class="boxed-btn">Back to Home Page <i class="fas fa-long-arrow-alt-right"></i></a>
+                                <a href="/countries" class="boxed-btn">Back to Home Page <i class="fas fa-long-arrow-alt-right"></i></a>
                             </div>
                         </div>
                     </div>
