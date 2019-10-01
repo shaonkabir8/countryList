@@ -21,6 +21,10 @@ window.onload = async function() {
             name: 'Countries'
         },
         {
+            path: '/country',
+            name: 'singleCountry'
+        },
+        {
             path: '/about',
             name: 'About'
         }
@@ -150,41 +154,14 @@ window.onload = async function() {
                                             <th>Name</th>
                                             <th>Capital</th>
                                             <th>Currency</th>
+                                            <th>Code</th>
                                             <th>Phone</th>
                                             <th>Native</th>
                                             <th>Continent</th>
                                             <th>Languages</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="tbody">
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">
-                                                        Country<span>List</span>
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="name"></p>
-                                                        <p class="capital"></p>
-                                                        <p class="currency"></p>
-                                                        <p class="phone"></p>
-                                                        <p class="native"></p>
-                                                        <p class="continent"></p>
-                                                        <p class="languages"></p>
-                                                        <a href="" class="learnMoreBtn"></a>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </tbody>
+                                    <tbody class="tbody"></tbody>
                                 </table>
                             </div>
                         </div>
@@ -223,7 +200,7 @@ window.onload = async function() {
                     </div>
                 </div>
 				`
-			}
+            }
         }
     }
     // Event Listener
@@ -268,66 +245,73 @@ function filterByContinent(continent) {
 
 // creating a function to display data as table
 function createTdElement(country,parentClass) {
-
-	const tr = document.createElement('tr');
-
+    const {name,capital,currency,languages,phone,continent,native,code} = country;
+    
+    const tr = document.createElement('tr');
+    
 	const tdName = document.createElement('td')
-	tdName.innerHTML = country.name
-	// for bootstrap tooltip
-	const span = document.createElement('span')
-	span.setAttribute('data-toggle','modal')
-	span.setAttribute('data-target','#exampleModal')
-	// for single country list modal popup
-	const link = document.createElement('a');
-	link.style.cursor = "url('http://bringerp.free.fr/Files/RotMG/cursor.gif'), auto";
-	// link.classList.add('toolTip')
-	// link.setAttribute( 'data-toggle','tooltip')
-	// link.setAttribute( 'data-placement','top')
-	link.setAttribute( 'title','Click here to see details')
+	tdName.innerHTML = country.name;
+	tdName.style.cursor = "url('http://bringerp.free.fr/Files/RotMG/cursor.gif'), auto";
+	tdName.setAttribute( 'title','Click here to see details')
+    
+	tdName.addEventListener('click', () => {
+        // Change URL accroding to click with actual data
+        window.history.pushState({}, '', `/countries/:${code}`)
+        
+        document.querySelector('#root').innerHTML = `
+            <div class="single-country-list">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="country-header">
+                                <h3>${name}</h3>
+                            </div>
+                            <div class="country-content">
+                                <h5>Country Name: ${name}</h5>
+                                <h5>Capital: ${capital}</h5>
+                                <h5>Currency: ${currency}</h5>
+                                <h5>Phone Code: ${phone}</h5>
+                                <h5>Country Code: ${code}</h5>
+                                <h5>Languages: ${languages}</h5>
+                                <h5>Native: ${native}</h5>
+                                <h5>Continent: ${continent}</h5>
+                                <a href="https://www.britannica.com/place/${name}" class="boxed-btn">Learn More<i class="fas fa-long-arrow-alt-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
 
-	link.addEventListener('click', () => {
-		// grab the information from API and destructuring them.
-		const {name,capital,currency,languages,phone,continent,native} = country;
-		// Button inside Modal Body to know more about single country
-		const learnMoreBtn = document.querySelector('.learnMoreBtn')
-		learnMoreBtn.innerHTML = `learn more <i class="fas fa-long-arrow-alt-right"></i>`
-		learnMoreBtn.setAttribute('href',`https://en.wikipedia.org/wiki/${country.name}`)
-		learnMoreBtn.setAttribute('target', '_blank');
-		// Set data to modal body 
-		const countryName = document.querySelector('.name').innerHTML =`Name: <span>${name}</span>`;
-		const countryCapital = document.querySelector('.capital').innerHTML =`Capital: <span>${capital}</span>`;
-		const countryCurrency = document.querySelector('.currency').innerHTML =`Capital: <span>${currency}</span>`;
-		const countryPhone = document.querySelector('.phone').innerHTML =`Phone Code: <span>${phone}</span>`;
-		const countryContinent = document.querySelector('.continent').innerHTML =`Continet: <span>${continent}</span>`;
-		const countryLanguages = document.querySelector('.languages').innerHTML =`Languages: <span>${languages}</span>`;
-		const countryNative = document.querySelector('.native').innerHTML =`Native: <span>${native}</span>`;
 	})
-	span.appendChild(link)
-	link.appendChild(tdName)
-	tr.appendChild(span)
+	tr.appendChild(tdName)
 
 	const tdCapital = document.createElement('td')
-	tdCapital.innerHTML = country.capital ? country.capital: 'N/A'
+	tdCapital.innerHTML = capital ? capital: 'N/A'
 	tr.appendChild(tdCapital)
 
 	const tdCurrency = document.createElement('td')
-	tdCurrency.innerHTML = country.currency;
+	tdCurrency.innerHTML = currency;
 	tr.appendChild(tdCurrency)
 
+	const tdCode = document.createElement('td')
+	tdCode.innerHTML = code;
+	tr.appendChild(tdCode)
+
 	const tdPhone = document.createElement('td')
-	tdPhone.innerHTML = country.phone;
+	tdPhone.innerHTML = phone;
 	tr.appendChild(tdPhone)
 
 	const tdNative = document.createElement('td')
-	tdNative.innerHTML = country.native;
+	tdNative.innerHTML = native;
 	tr.appendChild(tdNative)
 
 	const tdContinent = document.createElement('td')
-	tdContinent.innerHTML = country.continent;
+	tdContinent.innerHTML = continent;
 	tr.appendChild(tdContinent)
 
 	const tdLanguages = document.createElement('td')
-	tdLanguages.innerHTML = country.languages;
+	tdLanguages.innerHTML = languages;
 	tr.appendChild(tdLanguages)
 
 	parentClass.appendChild(tr)
