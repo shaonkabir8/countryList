@@ -19,14 +19,6 @@ window.onload = async function() {
         {
             path: '/countries',
             name: 'Countries'
-        },
-        {
-            path: '/country',
-            name: 'singleCountry'
-        },
-        {
-            path: '/about',
-            name: 'About'
         }
     ]);
 
@@ -35,7 +27,6 @@ window.onload = async function() {
     if(currentPath === '/') {
         // Header Style change
         header.classList.remove('fixed')
-        document.querySelector('.search-box').style.display = 'none'
 
 		root.innerHTML = `
             <div class="hero-area">
@@ -102,7 +93,6 @@ window.onload = async function() {
         } else {
             window.history.pushState({}, 'name', routeInfo.path);
             header.classList.remove('fixed')
-            document.querySelector('.search-box').style.display = 'none'
             root.innerHTML = `
 			<div class="hero-area">
                 <div class="container">
@@ -126,25 +116,10 @@ window.onload = async function() {
             `
             if(routeInfo.name === 'Countries') {
                 header.classList.add('fixed')
-                document.querySelector('.search-box').style.display = 'inline-block'
 
                 root.innerHTML = `
 				<div class="country-list">
                 <div class="container">
-                    <div class="row filter">
-                        <div class="col-md-12">
-                            <ul class="filter-continent">
-                                <li onclick="filterByContinent('')" class="active show">All</li>
-                                <li onclick="filterByContinent('AS')">Asia</li>
-                                <li onclick="filterByContinent('EU')">Europe</li>
-                                <li onclick="filterByContinent('NA')">North America</li>
-                                <li onclick="filterByContinent('SA')">South America</li>
-                                <li onclick="filterByContinent('OC')">Australia</li>
-                                <li onclick="filterByContinent('AF')">Africa</li>
-                                <li onclick="filterByContinent('AN')">Anterctica</li>
-                            </ul>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
@@ -172,35 +147,8 @@ window.onload = async function() {
             `
 			fetchAndUpdate()
             scrollFunction()
-            filterNProgress()
             changeActiveClass()
 			}
-			if(routeInfo.name === "About") {
-				root.innerHTML = `
-                <div class="about-page">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-8 offset-md-2">
-                                <div class="about-content">
-                                    <h5>Stack and Tools Used :)</h5>
-                                    <div class="stack">
-                                        <ul>
-                                            <li><a href=""><i class="fab fa-html5"></i> <span>HTML</span></a></li>
-                                            <li><a href=""><i class="fab fa-css3"></i> <span>CSS</span></a></li>
-                                            <li><a href=""><i class="fab fa-js"></i> <span>JavaScript</span></a></li>
-                                            <li><a href=""><i class="fab fa-bootstrap"></i> <span>Bootstrap</span></a></li>
-                                            <li><a href=""><i class="fab fa-font-awesome"></i> <span>Font Awesome</span></a></li>
-                                            <li><a href=""><i class="fas fa-font"></i> <span>Google Font</span></a></li>
-                                        </ul>
-                                        <p>View Source Code on <a href="https://github.com.com/Shaonkabir/countries" target="_blank">Github <i class="fab fa-github"></i></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-				`
-            }
         }
     }
     // Event Listener
@@ -230,18 +178,6 @@ function updateDom(countries) {
 }
 
 
-function filterByContinent(continent) {
-    if(continent) {
-        const filterContinent = countries.filter(item => {
-            return item.continent === continent
-        })
-        updateDom(filterContinent)
-    } else {
-        updateDom(countries)
-    }
-}
-
-
 
 // creating a function to display data as table
 function createTdElement(country,parentClass) {
@@ -260,8 +196,6 @@ function createTdElement(country,parentClass) {
         
         // Remove 'fixed' Class from Header
         document.querySelector('.header').classList.remove('fixed');
-        // Hide autoComplete
-        document.querySelector('#autoComplete').style.display = 'none'
         // Change Root Element Content
         document.querySelector('#root').innerHTML = `
             <div class="single-country-list">
@@ -326,28 +260,6 @@ function createTdElement(country,parentClass) {
 
 
 
-const nProgessActivationFunction = () => {
-	NProgress.start();
-	NProgress.set(0.6); 
-	NProgress.inc(); 
-	NProgress.configure({ ease: 'ease', speed: 1000 }); 
-	NProgress.configure({trickleSpeed: 1000 });
-	NProgress.configure({ showSpinner: true });
-	NProgress.done(); 
-}
-
-// NProgrss | Start only by clicking filtering items
-const filterNProgress = () => {
-    document.querySelectorAll('.filter-continent li').forEach(singleContinent => {
-        singleContinent.addEventListener('click', nProgessActivationFunction)
-    })
-}
-
-// NProgess for main menu item
-const mainMenu = document.querySelectorAll('.menu li');
-mainMenu.forEach(menu => {
-	menu.addEventListener('click', nProgessActivationFunction)
-})
 
 // Active Class Changing for Filtering Button
 function changeActiveClass(){
@@ -381,93 +293,6 @@ const scrollFunction = () => {
 }
 
 
-
-// AUTO COMPLETE BOX
-
-// autoComplete.js on type event emitter
-document.querySelector("#autoComplete").addEventListener("autoComplete", function (event) {
-	console.log(event.detail);
-	console.log(autoCompletejs);
-  });
-  
-  // The autoComplete.js Engine instance creator
-  const autoCompletejs = new autoComplete({
-	data: {
-	  src: async function () {
-		// Loading placeholder text
-		document.querySelector("#autoComplete").setAttribute("placeholder", "Loading...");
-		// Fetch External Data Source
-		const source = await fetch("http://countriesnode.herokuapp.com/v1/countries/");
-		const data = await source.json();
-		// Returns Fetched data
-		// console.log(data);
-		return data;
-	  },
-	  key: ["name","capital","native"],
-	},
-	sort: function (a, b) {
-	  if (a.match < b.match) {
-		return -1;
-	  }
-	  if (a.match > b.match) {
-		return 1;
-	  }
-	  return 0;
-	},
-	query: {
-	  manipulate: function (query) {
-		return query.replace("@pizza", "burger");
-	  },
-	},
-	placeHolder: "Search Country name",
-	selector: "#autoComplete",
-	threshold: 0,
-	debounce: 0,
-	searchEngine: "strict",
-	highlight: true,
-	maxResults: 10,
-	resultsList: {
-	  render: true,
-	  container: function (source) {
-		source.setAttribute("id", "autoComplete_results_list");
-	  },
-	  element: "ul",
-	  destination: document.querySelector("#autoComplete"),
-	  position: "afterend",
-	},
-	resultItem: {
-	  content: function (data, source) {
-		source.innerHTML = data.match;
-	  },
-	  element: "li",
-	},
-	noResults: function () {
-	  const result = document.createElement("li");
-	  result.setAttribute("class", "no_result");
-	  result.setAttribute("tabindex", "1");
-	  result.innerHTML = "No Results";
-	  document.querySelector("#autoComplete_results_list").appendChild(result);
-	},
-	onSelection: function (feedback) {
-	  const selection = feedback.selection.value.food;
-	  // Render selected choice to selection div
-	  document.querySelector(".selection").innerHTML = selection;
-	  // Clear Input
-	  document.querySelector("#autoComplete").value = "";
-	  // Change placeholder with the selected value
-	  document.querySelector("#autoComplete").setAttribute("placeholder", selection);
-	  // Concole log autoComplete data feedback
-	  console.log(feedback);
-	},
-  });
-  
-//   // On page load add class to input field
-  window.addEventListener("load", function () {
-	document.querySelector("#autoComplete").classList.add("out");
-  });
-
-
-
   // Media Query for Humburger Menu
 window.onresize = function() {
     const smallMenu = document.querySelector('.smallScreenMenu');
@@ -477,7 +302,6 @@ window.onresize = function() {
     if(width <= 768) {
         smallMenu.style.display = 'block';
         mainMenu.style.display = 'none';
-        document.querySelector("#autoComplete").style.display = 'none'
     } else {
         smallMenu.style.display = 'none';
         mainMenu.style.display = 'block';
